@@ -9,6 +9,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body { overflow-x: hidden; max-width: 100%; }
 
     :root {
       --navy:       #1B1878;
@@ -41,13 +42,7 @@
       position: relative;
       overflow: hidden;
     }
-    header::after {
-      content: '';
-      position: absolute;
-      bottom: 0; left: 0; right: 0;
-      height: 1px;
-      background: rgba(201,168,76,0.2);
-    }
+    header::after { content: none; }
     .logo {
       width: 130px;
       height: 130px;
@@ -429,6 +424,8 @@
     }
     .qs-foto {
       flex: 1;
+      width: 0;
+      min-width: 0;
       max-width: 240px;
       height: auto;
       border-radius: 10px;
