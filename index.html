@@ -340,6 +340,14 @@
       .field-row { grid-template-columns: 1fr; }
       .form-card { padding: 24px 18px; }
     }
+    @media (max-width: 420px) {
+      .tabs-nav { gap: 0; }
+      .tab-btn {
+        padding: 7px 10px;
+        font-size: 0.72rem;
+        letter-spacing: 0.01em;
+      }
+    }
     @media (prefers-reduced-motion: reduce) {
       .form-section { animation: none; }
       .card, .btn-whatsapp { transition: none; }
@@ -396,6 +404,8 @@
     /* ── QUIÉNES SOMOS ── */
     .qs-content {
       padding: 32px 0 8px;
+      overflow-x: hidden;
+      max-width: 100%;
     }
     .qs-title {
       font-family: 'Playfair Display', serif;
@@ -421,15 +431,16 @@
       gap: 10px;
       justify-content: center;
       margin-bottom: 28px;
+      overflow: hidden;
     }
     .qs-foto {
-      flex: 1;
-      width: 0;
-      min-width: 0;
+      width: calc(50% - 5px);
       max-width: 240px;
       height: auto;
+      flex-shrink: 1;
       border-radius: 10px;
       box-shadow: 0 4px 16px rgba(27,24,120,0.12);
+      display: block;
     }
     .qs-social-title {
       font-size: 0.75rem;
