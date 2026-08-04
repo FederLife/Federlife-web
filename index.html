@@ -1656,7 +1656,10 @@
     }
 
     function switchVariante(idx, sexo) {
-      const f = [...FLYERS].sort((a,b) => new Date(b.fecha) - new Date(a.fecha))[idx];
+      const f = [...FLYERS].sort((a,b) => {
+        if (sortMode === 'alfa') return a.titulo.localeCompare(b.titulo, 'es');
+        return new Date(b.fecha) - new Date(a.fecha);
+      })[idx];
       if (!f.variante) return;
       const archivo = sexo === 'f' ? f.archivo : f.variante.archivo;
       const thumb = document.getElementById('thumb-' + idx);
