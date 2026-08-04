@@ -942,6 +942,139 @@
       line-height: 1.7;
     }
     .mc-empty span { font-size: 2.5rem; display: block; margin-bottom: 12px; }
+
+    /* ── TOGGLE VARIANTES FLYER ── */
+    .mc-flyer-toggle {
+      display: flex;
+      gap: 6px;
+      margin-top: 8px;
+    }
+    .mc-toggle-btn {
+      flex: 1;
+      padding: 6px 8px;
+      border: 1.5px solid #ddd;
+      border-radius: 6px;
+      background: var(--off-white);
+      color: var(--text-mid);
+      font-size: 0.75rem;
+      font-weight: 600;
+      font-family: 'Inter', sans-serif;
+      cursor: pointer;
+      transition: all 0.18s;
+      letter-spacing: 0.02em;
+    }
+    .mc-toggle-btn.active {
+      background: var(--navy);
+      border-color: var(--navy);
+      color: white;
+    }
+    .mc-toggle-btn:hover:not(.active) {
+      border-color: var(--navy);
+      color: var(--navy);
+    }
+
+    /* ── TOOLBAR ORDENAMIENTO ── */
+    .mc-toolbar {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+    }
+    .mc-sort-label {
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--text-mid);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+    .mc-sort-btns {
+      display: flex;
+      gap: 6px;
+    }
+    .mc-sort-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      padding: 6px 14px;
+      border: 1.5px solid #ddd;
+      border-radius: 6px;
+      background: var(--white);
+      color: var(--text-mid);
+      font-size: 0.78rem;
+      font-weight: 600;
+      font-family: 'Inter', sans-serif;
+      cursor: pointer;
+      transition: all 0.18s;
+      letter-spacing: 0.02em;
+    }
+    .mc-sort-btn.active {
+      background: var(--navy);
+      border-color: var(--navy);
+      color: white;
+    }
+    .mc-sort-btn:hover:not(.active) {
+      border-color: var(--navy);
+      color: var(--navy);
+    }
+
+    /* ── CONJUNTO DE FLYERS ── */
+    .mc-conjunto-nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: 6px;
+      gap: 6px;
+    }
+    .mc-conjunto-arrow {
+      background: none;
+      border: 1.5px solid #ddd;
+      border-radius: 6px;
+      width: 28px;
+      height: 28px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      color: var(--text-mid);
+      font-size: 0.85rem;
+      flex-shrink: 0;
+      transition: all 0.18s;
+    }
+    .mc-conjunto-arrow:hover { border-color: var(--navy); color: var(--navy); }
+    .mc-conjunto-dots {
+      display: flex;
+      gap: 5px;
+    }
+    .mc-conjunto-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: #ddd;
+      cursor: pointer;
+      transition: background 0.18s;
+    }
+    .mc-conjunto-dot.active { background: var(--navy); }
+    .mc-dl-conjunto {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      margin-top: 8px;
+      padding: 9px;
+      background: var(--gold);
+      color: var(--navy-dark);
+      font-size: 0.78rem;
+      font-weight: 700;
+      font-family: 'Inter', sans-serif;
+      border-radius: 7px;
+      border: none;
+      cursor: pointer;
+      letter-spacing: 0.04em;
+      transition: background 0.18s;
+      width: 100%;
+    }
+    .mc-dl-conjunto:hover { background: var(--gold-light); }
   </style>
 </head>
 <body>
@@ -959,6 +1092,19 @@
     <div class="mc-body">
       <h2 class="mc-section-title">Flyers</h2>
       <p class="mc-section-sub">Material de difusión ordenado del más reciente al más antiguo. Hacé clic en Descargar para guardar el archivo.</p>
+      <div class="mc-toolbar">
+        <span class="mc-sort-label">Ordenar por:</span>
+        <div class="mc-sort-btns">
+          <button class="mc-sort-btn active" id="sort-fecha" onclick="setSortMode('fecha')">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+            Fecha de subida
+          </button>
+          <button class="mc-sort-btn" id="sort-alfa" onclick="setSortMode('alfa')">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="15" y2="12"/><line x1="3" y1="18" x2="9" y2="18"/></svg>
+            Alfabético
+          </button>
+        </div>
+      </div>
       <div class="mc-flyers-grid" id="mc-flyers-grid">
         <!-- Los flyers se renderizan desde el array en JavaScript -->
       </div>
@@ -1347,24 +1493,29 @@
     // El campo "archivo" es la ruta relativa al repositorio (ej: "flyers/nombre.jpg")
     const FLYERS = [
       {
+        titulo: "Ahorro y Vida 2",
+        fecha:  "2026-08-04",
+        conjunto: [
+          "flyers/Ahorro_y_Vida_2.jpg",
+          "flyers/Ahorro_y_Vida_2_2.jpg"
+        ]
+      },
+      {
         titulo: "Ahorro y Vida",
         fecha:  "2026-07-28",
         archivo: "flyers/Ahorro___Vida.png"
       },
       {
-        titulo: "Renta Personal - Personaje Femenino 2",
+        titulo: "Renta Personal 2",
         fecha:  "2026-07-28",
-        archivo: "flyers/Renta_Personal_-_Personaje_femenino_2.png"
+        archivo: "flyers/Renta_Personal_-_Personaje_femenino.png",
+        variante: { archivo: "flyers/Renta_Personal_-_Personaje_masculino.png" }
       },
       {
-        titulo: "Renta Personal - Personaje Femenino",
+        titulo: "Renta Personal 3",
         fecha:  "2026-07-28",
-        archivo: "flyers/Renta_Personal_-_Personaje_femenino.png"
-      },
-      {
-        titulo: "Renta Personal - Personaje Masculino",
-        fecha:  "2026-07-28",
-        archivo: "flyers/Renta_Personal_-_Personaje_masculino.png"
+        archivo: "flyers/Renta_Personal_-_Personaje_femenino_2.png",
+        variante: { archivo: "flyers/Renta_Personal_-_Personaje_masculino_2.png" }
       },
       {
         titulo: "Lucro Cesante",
@@ -1372,14 +1523,9 @@
         archivo: "flyers/Lucro_Cesante.png"
       },
       {
-        titulo: "Renta Personal del BSE",
+        titulo: "Renta Personal",
         fecha:  "2026-07-28",
         archivo: "flyers/RENTA_PERSONAL_DEL_BSE.png"
-      },
-      {
-        titulo: "Renta Personal - Personaje Masculino 2",
-        fecha:  "2026-07-28",
-        archivo: "flyers/Renta_Personal_-_Personaje_masculino_2.png"
       },
       {
         titulo: "Ahorro en UI",
@@ -1387,6 +1533,16 @@
         archivo: "flyers/Ahorro_en_UI.png"
       },
     ];
+
+
+    let sortMode = 'fecha';
+
+    function setSortMode(mode) {
+      sortMode = mode;
+      document.getElementById('sort-fecha').classList.toggle('active', mode === 'fecha');
+      document.getElementById('sort-alfa').classList.toggle('active', mode === 'alfa');
+      renderFlyers();
+    }
 
     function renderFlyers() {
       const grid = document.getElementById('mc-flyers-grid');
@@ -1397,28 +1553,120 @@
         </div>`;
         return;
       }
-      // Ordenar más reciente primero
-      const ordenados = [...FLYERS].sort((a, b) => new Date(b.fecha) - new Date(a.fecha));
-      grid.innerHTML = ordenados.map(f => {
+      const ordenados = [...FLYERS].sort((a, b) => {
+        if (sortMode === 'alfa') return a.titulo.localeCompare(b.titulo, 'es');
+        return new Date(b.fecha) - new Date(a.fecha);
+      });
+      const dlIcon = `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>`;
+      grid.innerHTML = ordenados.map((f, i) => {
         const fecha = new Date(f.fecha + 'T00:00:00');
         const fechaStr = fecha.toLocaleDateString('es-UY', { day:'2-digit', month:'long', year:'numeric' });
-        const esImagen = /\.(jpg|jpeg|png|webp|gif)$/i.test(f.archivo);
-        const thumb = esImagen
-          ? `<img src="${f.archivo}" class="mc-flyer-thumb" alt="${f.titulo}" onerror="this.outerHTML='<div class=mc-flyer-thumb-placeholder>🖼️</div>'" />`
+
+        // ── CONJUNTO ──
+        if (f.conjunto) {
+          const first = f.conjunto[0];
+          const total = f.conjunto.length;
+          const dots = f.conjunto.map((_, d) =>
+            `<span class="mc-conjunto-dot ${d===0?'active':''}" onclick="goConjunto(${i},${d})" id="dot-${i}-${d}"></span>`
+          ).join('');
+          return `
+            <div class="mc-flyer-card">
+              <img src="${first}" class="mc-flyer-thumb" id="thumb-${i}" alt="${f.titulo}" />
+              <div class="mc-flyer-info">
+                <p class="mc-flyer-date">${fechaStr}</p>
+                <p class="mc-flyer-title">${f.titulo} <span id="idx-${i}" style="color:var(--text-mid);font-weight:400;font-size:0.8rem">(1 de ${total})</span></p>
+                <div class="mc-conjunto-nav">
+                  <button class="mc-conjunto-arrow" onclick="goConjunto(${i},'prev')">‹</button>
+                  <div class="mc-conjunto-dots">${dots}</div>
+                  <button class="mc-conjunto-arrow" onclick="goConjunto(${i},'next')">›</button>
+                </div>
+                <button class="mc-dl-conjunto" onclick="descargarConjunto(${i})">
+                  ${dlIcon} Descargar todas (${total})
+                </button>
+              </div>
+            </div>`;
+        }
+
+        // ── INDIVIDUAL / VARIANTE ──
+        const esImg = /\.(jpg|jpeg|png|webp|gif)$/i.test(f.archivo);
+        const thumb = esImg
+          ? `<img src="${f.archivo}" class="mc-flyer-thumb" id="thumb-${i}" alt="${f.titulo}" onerror="this.outerHTML='<div class=mc-flyer-thumb-placeholder>🖼️</div>'" />`
           : `<div class="mc-flyer-thumb-placeholder">📄</div>`;
+        const toggle = f.variante ? `
+          <div class="mc-flyer-toggle">
+            <button class="mc-toggle-btn active" id="btn-f-${i}" onclick="switchVariante(${i},'f')">♀ Femenino</button>
+            <button class="mc-toggle-btn" id="btn-m-${i}" onclick="switchVariante(${i},'m')">♂ Masculino</button>
+          </div>` : '';
         return `
           <div class="mc-flyer-card">
             ${thumb}
             <div class="mc-flyer-info">
               <p class="mc-flyer-date">${fechaStr}</p>
               <p class="mc-flyer-title">${f.titulo}</p>
-              <a href="${f.archivo}" download class="mc-flyer-download">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-                Descargar
+              ${toggle}
+              <a href="${f.archivo}" download class="mc-flyer-download" id="dl-${i}">
+                ${dlIcon} Descargar
               </a>
             </div>
           </div>`;
       }).join('');
+    }
+
+
+    const conjuntoState = {};
+
+    function goConjunto(idx, dir) {
+      const f = [...FLYERS].sort((a,b)=>{
+        if(sortMode==='alfa') return a.titulo.localeCompare(b.titulo,'es');
+        return new Date(b.fecha)-new Date(a.fecha);
+      })[idx];
+      if (!f.conjunto) return;
+      const total = f.conjunto.length;
+      let cur = conjuntoState[idx] || 0;
+      if (dir === 'prev') cur = (cur - 1 + total) % total;
+      else if (dir === 'next') cur = (cur + 1) % total;
+      else cur = dir;
+      conjuntoState[idx] = cur;
+      const thumb = document.getElementById('thumb-' + idx);
+      if (thumb) thumb.src = f.conjunto[cur];
+      const label = document.getElementById('idx-' + idx);
+      if (label) label.textContent = `(${cur+1} de ${total})`;
+      f.conjunto.forEach((_, d) => {
+        const dot = document.getElementById(`dot-${idx}-${d}`);
+        if (dot) dot.classList.toggle('active', d === cur);
+      });
+    }
+
+    function descargarConjunto(idx) {
+      const f = [...FLYERS].sort((a,b)=>{
+        if(sortMode==='alfa') return a.titulo.localeCompare(b.titulo,'es');
+        return new Date(b.fecha)-new Date(a.fecha);
+      })[idx];
+      if (!f.conjunto) return;
+      f.conjunto.forEach((archivo, i) => {
+        setTimeout(() => {
+          const a = document.createElement('a');
+          a.href = archivo;
+          a.download = archivo.split('/').pop();
+          document.body.appendChild(a);
+          a.click();
+          document.body.removeChild(a);
+        }, i * 600);
+      });
+    }
+
+    function switchVariante(idx, sexo) {
+      const f = [...FLYERS].sort((a,b) => new Date(b.fecha) - new Date(a.fecha))[idx];
+      if (!f.variante) return;
+      const archivo = sexo === 'f' ? f.archivo : f.variante.archivo;
+      const thumb = document.getElementById('thumb-' + idx);
+      const dl = document.getElementById('dl-' + idx);
+      const btnF = document.getElementById('btn-f-' + idx);
+      const btnM = document.getElementById('btn-m-' + idx);
+      if (thumb) thumb.src = archivo;
+      if (dl) dl.href = archivo;
+      btnF.classList.toggle('active', sexo === 'f');
+      btnM.classList.toggle('active', sexo === 'm');
     }
 
     let logoClicks = 0, logoTimer = null;
