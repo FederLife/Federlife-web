@@ -496,77 +496,60 @@
       box-shadow: 0 4px 14px rgba(0,119,181,0.25);
     }
 
-    /* ── TRABAJAMOS JUNTO A (logo columns) ── */
-    .qs-junto-label {
-      font-size: 0.7rem;
+    /* ── TICKER LOGOS (Trabajamos junto a) ── */
+    .logos-ticker-section {
+      background: var(--off-white);
+      padding: 18px 0 22px;
+      border-top: 1px solid rgba(201,168,76,0.25);
+      overflow: hidden;
+      position: relative;
+    }
+    .logos-ticker-section::before,
+    .logos-ticker-section::after {
+      content: '';
+      position: absolute;
+      top: 0; bottom: 0;
+      width: 60px;
+      z-index: 2;
+      pointer-events: none;
+    }
+    .logos-ticker-section::before {
+      left: 0;
+      background: linear-gradient(to right, var(--off-white), transparent);
+    }
+    .logos-ticker-section::after {
+      right: 0;
+      background: linear-gradient(to left, var(--off-white), transparent);
+    }
+    .logos-ticker-label {
+      font-size: 0.68rem;
       font-weight: 700;
       letter-spacing: 0.16em;
       text-transform: uppercase;
       color: var(--gold);
       text-align: center;
-      padding: 18px 0 2px;
+      margin-bottom: 14px;
     }
-    .qs-outer {
+    .logos-ticker-track {
       display: flex;
-      gap: 8px;
-      align-items: flex-start;
-      width: 100%;
-    }
-    .qs-outer .qs-content {
-      flex: 1;
-      min-width: 0;
-      max-width: none;
-    }
-    .qs-logos-col {
-      width: 52px;
-      min-width: 52px;
-      flex-shrink: 0;
-      height: 560px;
-      overflow: hidden;
-      position: relative;
-    }
-    .qs-logos-col::before,
-    .qs-logos-col::after {
-      content: '';
-      position: absolute;
-      left: 0; right: 0;
-      height: 48px;
-      z-index: 2;
-      pointer-events: none;
-    }
-    .qs-logos-col::before {
-      top: 0;
-      background: linear-gradient(to bottom, var(--off-white), transparent);
-    }
-    .qs-logos-col::after {
-      bottom: 0;
-      background: linear-gradient(to top, var(--off-white), transparent);
-    }
-    .logos-fall-track {
-      display: flex;
-      flex-direction: column;
       align-items: center;
-      gap: 16px;
-      opacity: 0.75;
+      gap: 52px;
+      width: max-content;
+      opacity: 0.78;
       will-change: transform;
-      padding-top: 8px;
+      animation: tickerSlide 32s linear infinite;
     }
-    .logos-fall-track img {
-      width: 46px;
-      height: 38px;
+    .logos-ticker-track img {
+      height: 58px;
+      width: auto;
+      max-width: 130px;
       object-fit: contain;
+      flex-shrink: 0;
       display: block;
     }
-    .logos-fall-left {
-      animation: logoFallDown 22s linear infinite;
-    }
-    .logos-fall-right {
-      animation: logoFallDown 28s linear infinite;
-      animation-delay: -10s;
-    }
-    @keyframes logoFallDown {
-      from { transform: translateY(0); }
-      to   { transform: translateY(-50%); }
+    @keyframes tickerSlide {
+      from { transform: translateX(0); }
+      to   { transform: translateX(-50%); }
     }
 
     /* ── CONTACTO ── */
@@ -1557,28 +1540,6 @@
 
     <!-- TAB: QUIÉNES SOMOS -->
     <div id="tab-quienes" class="tab-panel active">
-      <p class="qs-junto-label">Trabajamos junto a</p>
-      <div class="qs-outer">
-
-        <!-- Columna izquierda de logos -->
-        <div class="qs-logos-col">
-          <div class="logos-fall-track logos-fall-left">
-            <img src="logos/AET.png"      alt="AET"      loading="lazy">
-            <img src="logos/ILP.png"      alt="ILP"      loading="lazy">
-            <img src="logos/Itau.png"     alt="Itaú"     loading="lazy">
-            <img src="logos/ALADI.png"    alt="ALADI"    loading="lazy">
-            <img src="logos/Comeca.png"   alt="Comeca"   loading="lazy">
-            <img src="logos/APU.png"      alt="APU"      loading="lazy">
-            <!-- duplicados para loop infinito -->
-            <img src="logos/AET.png"      alt="" loading="lazy" aria-hidden="true">
-            <img src="logos/ILP.png"      alt="" loading="lazy" aria-hidden="true">
-            <img src="logos/Itau.png"     alt="" loading="lazy" aria-hidden="true">
-            <img src="logos/ALADI.png"    alt="" loading="lazy" aria-hidden="true">
-            <img src="logos/Comeca.png"   alt="" loading="lazy" aria-hidden="true">
-            <img src="logos/APU.png"      alt="" loading="lazy" aria-hidden="true">
-          </div>
-        </div>
-
       <div class="qs-content">
 
         <h2 class="qs-title">Quiénes somos</h2>
@@ -1617,28 +1578,7 @@
           </a>
         </div>
 
-      </div><!-- /qs-content -->
-
-        <!-- Columna derecha de logos -->
-        <div class="qs-logos-col">
-          <div class="logos-fall-track logos-fall-right">
-            <img src="logos/BSE.png"        alt="BSE"                      loading="lazy">
-            <img src="logos/OCAL.png"       alt="OCAL"                     loading="lazy">
-            <img src="logos/SaltoGrande.png" alt="Salto Grande"            loading="lazy">
-            <img src="logos/AsocRural.png"  alt="Asociación Rural Uruguay" loading="lazy">
-            <img src="logos/FEPEAL.png"     alt="FEPEAL"                   loading="lazy">
-            <img src="logos/CELU.png"       alt="CELU"                     loading="lazy">
-            <!-- duplicados para loop infinito -->
-            <img src="logos/BSE.png"        alt="" loading="lazy" aria-hidden="true">
-            <img src="logos/OCAL.png"       alt="" loading="lazy" aria-hidden="true">
-            <img src="logos/SaltoGrande.png" alt="" loading="lazy" aria-hidden="true">
-            <img src="logos/AsocRural.png"  alt="" loading="lazy" aria-hidden="true">
-            <img src="logos/FEPEAL.png"     alt="" loading="lazy" aria-hidden="true">
-            <img src="logos/CELU.png"       alt="" loading="lazy" aria-hidden="true">
-          </div>
-        </div>
-
-      </div><!-- /qs-outer -->
+      </div>
     </div><!-- /tab-quienes -->
 
     <!-- TAB: CONTACTO -->
@@ -1807,6 +1747,38 @@
       </div>
       <div class="bse-sep"></div>
       <img src="materials/bse-logo.png" loading="lazy" alt="BSE" class="bse-logo" />
+    </div>
+
+    <!-- TICKER: Trabajamos junto a -->
+    <div class="logos-ticker-section">
+      <p class="logos-ticker-label">Trabajamos junto a</p>
+      <div class="logos-ticker-track">
+        <img src="logos/AET.png"         alt="AET"                      loading="lazy">
+        <img src="logos/BSE.png"         alt="BSE"                      loading="lazy">
+        <img src="logos/ILP.png"         alt="Instituto Latinoamericano de Psicoanálisis" loading="lazy">
+        <img src="logos/OCAL.png"        alt="OCAL"                     loading="lazy">
+        <img src="logos/Itau.png"        alt="Itaú"                     loading="lazy">
+        <img src="logos/SaltoGrande.png" alt="Salto Grande"             loading="lazy">
+        <img src="logos/ALADI.png"       alt="ALADI"                    loading="lazy">
+        <img src="logos/AsocRural.png"   alt="Asociación Rural Uruguay" loading="lazy">
+        <img src="logos/Comeca.png"      alt="Comeca"                   loading="lazy">
+        <img src="logos/FEPEAL.png"      alt="FEPEAL"                   loading="lazy">
+        <img src="logos/APU.png"         alt="APU"                      loading="lazy">
+        <img src="logos/CELU.png"        alt="CELU"                     loading="lazy">
+        <!-- duplicados para loop infinito -->
+        <img src="logos/AET.png"         alt="" loading="lazy" aria-hidden="true">
+        <img src="logos/BSE.png"         alt="" loading="lazy" aria-hidden="true">
+        <img src="logos/ILP.png"         alt="" loading="lazy" aria-hidden="true">
+        <img src="logos/OCAL.png"        alt="" loading="lazy" aria-hidden="true">
+        <img src="logos/Itau.png"        alt="" loading="lazy" aria-hidden="true">
+        <img src="logos/SaltoGrande.png" alt="" loading="lazy" aria-hidden="true">
+        <img src="logos/ALADI.png"       alt="" loading="lazy" aria-hidden="true">
+        <img src="logos/AsocRural.png"   alt="" loading="lazy" aria-hidden="true">
+        <img src="logos/Comeca.png"      alt="" loading="lazy" aria-hidden="true">
+        <img src="logos/FEPEAL.png"      alt="" loading="lazy" aria-hidden="true">
+        <img src="logos/APU.png"         alt="" loading="lazy" aria-hidden="true">
+        <img src="logos/CELU.png"        alt="" loading="lazy" aria-hidden="true">
+      </div>
     </div>
 
   <footer>
