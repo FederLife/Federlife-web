@@ -661,6 +661,124 @@
       .contact-grid { grid-template-columns: 1fr 1fr; }
     }
 
+    /* ── FORMULARIO DE CONTACTO ── */
+    .cf-wrapper {
+      background: var(--white);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 32px 24px 36px;
+      margin-bottom: 32px;
+    }
+    .cf-heading {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.25rem;
+      color: var(--navy);
+      margin-bottom: 6px;
+    }
+    .cf-sub {
+      font-size: 0.84rem;
+      color: var(--text-mid);
+      margin-bottom: 24px;
+      line-height: 1.6;
+    }
+    .cf-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+    @media (max-width: 480px) {
+      .cf-row { grid-template-columns: 1fr; }
+    }
+    .cf-group {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      margin-bottom: 16px;
+    }
+    .cf-label {
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--text-mid);
+    }
+    .cf-opt {
+      font-weight: 400;
+      font-size: 0.72rem;
+      letter-spacing: 0;
+      text-transform: none;
+      opacity: 0.7;
+    }
+    .cf-input, .cf-textarea {
+      width: 100%;
+      padding: 11px 14px;
+      border: 1.5px solid #d9d2c5;
+      border-radius: 8px;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.92rem;
+      color: var(--text-dark);
+      background: var(--off-white);
+      transition: border-color 0.18s, box-shadow 0.18s;
+      box-sizing: border-box;
+      -webkit-appearance: none;
+      appearance: none;
+    }
+    .cf-input:focus, .cf-textarea:focus {
+      outline: none;
+      border-color: var(--gold);
+      box-shadow: 0 0 0 3px rgba(201,168,76,0.15);
+    }
+    .cf-textarea {
+      resize: vertical;
+      min-height: 110px;
+    }
+    .cf-btn {
+      margin-top: 20px;
+      width: 100%;
+      padding: 14px;
+      background: var(--navy);
+      color: var(--gold-light);
+      font-family: 'Inter', sans-serif;
+      font-size: 0.9rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: transform 0.18s, box-shadow 0.18s;
+      box-shadow: 0 4px 14px rgba(10,25,47,0.18);
+    }
+    .cf-btn:hover:not(:disabled) {
+      transform: translateY(-2px);
+      box-shadow: 0 7px 20px rgba(10,25,47,0.26);
+    }
+    .cf-btn:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+    .cf-status {
+      margin-top: 16px;
+      padding: 12px 16px;
+      border-radius: 8px;
+      font-size: 0.88rem;
+      font-weight: 500;
+      line-height: 1.5;
+      display: none;
+    }
+    .cf-status.success {
+      background: #f0faf3;
+      color: #1a7a3c;
+      border: 1px solid #a8ddb8;
+      display: block;
+    }
+    .cf-status.error {
+      background: #fff5f5;
+      color: #b91c1c;
+      border: 1px solid #fca5a5;
+      display: block;
+    }
+
     /* ── SPLIT SELECTOR ── */
     .split-selector {
       display: flex;
@@ -1583,6 +1701,50 @@
 
     <!-- TAB: CONTACTO -->
     <div id="tab-contacto" class="tab-panel">
+
+      <!-- FORMULARIO DE CONTACTO -->
+      <div class="cf-wrapper">
+        <h3 class="cf-heading">Escribinos</h3>
+        <p class="cf-sub">Completá el formulario y nos comunicamos a la brevedad.</p>
+        <form id="contactForm" novalidate>
+          <!-- Web3Forms: reemplazá el value con tu access key de web3forms.com -->
+          <input type="hidden" name="access_key" value="REEMPLAZAR_CON_ACCESS_KEY">
+          <input type="hidden" name="subject" value="Consulta desde el sitio web — Feder Life">
+          <input type="hidden" name="from_name" value="Feder Life Consulting — Web">
+          <input type="checkbox" name="botcheck" style="display:none" tabindex="-1" autocomplete="off">
+
+          <div class="cf-row">
+            <div class="cf-group">
+              <label class="cf-label" for="cf-nombre">Nombre <span class="cf-opt">(opcional)</span></label>
+              <input class="cf-input" type="text" id="cf-nombre" name="nombre" placeholder="Tu nombre" autocomplete="given-name">
+            </div>
+            <div class="cf-group">
+              <label class="cf-label" for="cf-tel">Teléfono <span class="cf-opt">(opcional)</span></label>
+              <input class="cf-input" type="tel" id="cf-tel" name="telefono" placeholder="09X XXX XXX" autocomplete="tel">
+            </div>
+          </div>
+
+          <div class="cf-row">
+            <div class="cf-group">
+              <label class="cf-label" for="cf-email">Email <span class="cf-opt">(opcional)</span></label>
+              <input class="cf-input" type="email" id="cf-email" name="email" placeholder="tu@email.com" autocomplete="email">
+            </div>
+            <div class="cf-group">
+              <label class="cf-label" for="cf-nac">Fecha de nacimiento</label>
+              <input class="cf-input" type="date" id="cf-nac" name="fecha_nacimiento" required>
+            </div>
+          </div>
+
+          <div class="cf-group">
+            <label class="cf-label" for="cf-msg">Mensaje</label>
+            <textarea class="cf-textarea" id="cf-msg" name="mensaje" placeholder="¿En qué podemos ayudarte?" required></textarea>
+          </div>
+
+          <button type="submit" class="cf-btn" id="cf-submit">Enviar mensaje</button>
+          <div class="cf-status" id="cf-status"></div>
+        </form>
+      </div>
+
       <h2 class="section-title" style="margin-bottom:20px;">Nuestro equipo</h2>
       <div class="contact-grid">
 
@@ -2233,6 +2395,57 @@ _Enviado desde federlifeconsulting.com_`;
         window.open('https://wa.me/' + WA_NUMBER + '?text=' + encodeURIComponent(msg), '_blank');
       }
     }
+
+    // ── FORMULARIO DE CONTACTO ──
+    (function () {
+      var form   = document.getElementById('contactForm');
+      var btn    = document.getElementById('cf-submit');
+      var status = document.getElementById('cf-status');
+      if (!form) return;
+
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+
+        // Limpiar estado anterior
+        status.className   = 'cf-status';
+        status.textContent = '';
+
+        // Validar campos requeridos
+        var dob = form.querySelector('[name="fecha_nacimiento"]').value;
+        var msg = form.querySelector('[name="mensaje"]').value.trim();
+        if (!dob || !msg) {
+          status.textContent = 'Por favor completá la fecha de nacimiento y el mensaje.';
+          status.className   = 'cf-status error';
+          return;
+        }
+
+        btn.disabled    = true;
+        btn.textContent = 'Enviando…';
+
+        fetch('https://api.web3forms.com/submit', {
+          method: 'POST',
+          body: new FormData(form)
+        })
+        .then(function (res) { return res.json(); })
+        .then(function (json) {
+          if (json.success) {
+            status.textContent = '¡Mensaje enviado! Nos comunicamos con vos a la brevedad.';
+            status.className   = 'cf-status success';
+            form.reset();
+          } else {
+            throw new Error(json.message || 'Error al enviar');
+          }
+        })
+        .catch(function () {
+          status.textContent = 'Hubo un error al enviar. Intentá de nuevo o escribinos por WhatsApp.';
+          status.className   = 'cf-status error';
+        })
+        .finally(function () {
+          btn.disabled    = false;
+          btn.textContent = 'Enviar mensaje';
+        });
+      });
+    })();
   </script>
 </body>
 </html>
