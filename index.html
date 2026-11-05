@@ -1702,12 +1702,45 @@
     <!-- TAB: CONTACTO -->
     <div id="tab-contacto" class="tab-panel">
 
+      <h2 class="section-title" style="margin-bottom:20px;">Nuestro equipo</h2>
+      <div class="contact-grid">
+
+        <!-- Daniel Feder -->
+        <div class="person-card">
+          <img src="materials/img-daniel.jpg" loading="lazy" alt="Daniel Feder" class="person-photo" />
+          <p class="person-name">Daniel Feder</p>
+          <p class="person-role">Director</p>
+          <p class="person-phone">094 431 956</p>
+          <a href="https://wa.me/59894431956" target="_blank" class="btn-wa-sm" rel="noopener">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.094.539 4.061 1.481 5.775L.057 23.116a.75.75 0 00.92.906l5.444-1.427A11.945 11.945 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.75a9.715 9.715 0 01-4.951-1.354l-.355-.211-3.683.965.982-3.588-.231-.368A9.713 9.713 0 012.25 12C2.25 6.615 6.615 2.25 12 2.25S21.75 6.615 21.75 12 17.385 21.75 12 21.75z"/></svg> WhatsApp
+          </a>
+        </div>
+
+        <!-- Elizabeth Brea -->
+        <div class="person-card">
+          <img src="materials/img-elizabeth.jpg" loading="lazy" alt="Elizabeth Brea" class="person-photo" />
+          <p class="person-name">Elizabeth Brea</p>
+          <p class="person-role">Responsable comercial</p>
+          <p class="person-phone">094 780 488</p>
+          <a href="https://wa.me/59894780488" target="_blank" class="btn-wa-sm" rel="noopener">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.094.539 4.061 1.481 5.775L.057 23.116a.75.75 0 00.92.906l5.444-1.427A11.945 11.945 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.75a9.715 9.715 0 01-4.951-1.354l-.355-.211-3.683.965.982-3.588-.231-.368A9.713 9.713 0 012.25 12C2.25 6.615 6.615 2.25 12 2.25S21.75 6.615 21.75 12 17.385 21.75 12 21.75z"/></svg> WhatsApp
+          </a>
+        </div>
+
+        <!-- Facundo Martínez -->
+        <div class="person-card">
+          <img src="materials/img-facundo.jpg" loading="lazy" alt="Facundo Martínez" class="person-photo" />
+          <p class="person-name">Facundo Martínez</p>
+          <p class="person-role">Responsable de Back Office</p>
+        </div>
+
+      </div>
+
       <!-- FORMULARIO DE CONTACTO -->
-      <div class="cf-wrapper">
+      <div class="cf-wrapper" style="margin-top:32px;">
         <h3 class="cf-heading">Escribinos</h3>
         <p class="cf-sub">Completá el formulario y nos comunicamos a la brevedad.</p>
         <form id="contactForm" novalidate>
-          <!-- Web3Forms: reemplazá el value con tu access key de web3forms.com -->
           <input type="hidden" name="access_key" value="95ca7896-64a8-41a9-99e0-e08b43503e93">
           <input type="hidden" name="subject" value="Consulta desde el sitio web — Feder Life">
           <input type="hidden" name="from_name" value="Feder Life Consulting — Web">
@@ -1743,40 +1776,6 @@
           <button type="submit" class="cf-btn" id="cf-submit">Enviar mensaje</button>
           <div class="cf-status" id="cf-status"></div>
         </form>
-      </div>
-
-      <h2 class="section-title" style="margin-bottom:20px;">Nuestro equipo</h2>
-      <div class="contact-grid">
-
-        <!-- Daniel Feder -->
-        <div class="person-card">
-          <img src="materials/img-daniel.jpg" loading="lazy" alt="Daniel Feder" class="person-photo" />
-          <p class="person-name">Daniel Feder</p>
-          <p class="person-role">Director</p>
-          <p class="person-phone">094 431 956</p>
-          <a href="https://wa.me/59894431956" target="_blank" class="btn-wa-sm" rel="noopener">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.094.539 4.061 1.481 5.775L.057 23.116a.75.75 0 00.92.906l5.444-1.427A11.945 11.945 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.75a9.715 9.715 0 01-4.951-1.354l-.355-.211-3.683.965.982-3.588-.231-.368A9.713 9.713 0 012.25 12C2.25 6.615 6.615 2.25 12 2.25S21.75 6.615 21.75 12 17.385 21.75 12 21.75z"/></svg> WhatsApp
-          </a>
-        </div>
-
-        <!-- Elizabeth Brea -->
-        <div class="person-card">
-          <img src="materials/img-elizabeth.jpg" loading="lazy" alt="Elizabeth Brea" class="person-photo" />
-          <p class="person-name">Elizabeth Brea</p>
-          <p class="person-role">Responsable comercial</p>
-          <p class="person-phone">094 780 488</p>
-          <a href="https://wa.me/59894780488" target="_blank" class="btn-wa-sm" rel="noopener">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.094.539 4.061 1.481 5.775L.057 23.116a.75.75 0 00.92.906l5.444-1.427A11.945 11.945 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.75a9.715 9.715 0 01-4.951-1.354l-.355-.211-3.683.965.982-3.588-.231-.368A9.713 9.713 0 012.25 12C2.25 6.615 6.615 2.25 12 2.25S21.75 6.615 21.75 12 17.385 21.75 12 21.75z"/></svg> WhatsApp
-          </a>
-        </div>
-
-        <!-- Facundo Martínez -->
-        <div class="person-card">
-          <img src="materials/img-facundo.jpg" loading="lazy" alt="Facundo Martínez" class="person-photo" />
-          <p class="person-name">Facundo Martínez</p>
-          <p class="person-role">Responsable de Back Office</p>
-        </div>
-
       </div>
 
       <!-- FAQ -->
