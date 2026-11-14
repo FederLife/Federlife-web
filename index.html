@@ -661,6 +661,31 @@
       .contact-grid { grid-template-columns: 1fr 1fr; }
     }
 
+    /* ── IFRAME COTIZADOR BSE ── */
+    .bse-embed-card {
+      padding: 24px 20px 20px;
+    }
+    .bse-iframe-wrap {
+      position: relative;
+      width: 100%;
+      border-radius: 10px;
+      overflow: hidden;
+      background: #f0ede8;
+      margin-bottom: 4px;
+    }
+    #bse-renta-iframe {
+      width: 100%;
+      height: 580px;
+      border: none;
+      display: block;
+      border-radius: 10px;
+    }
+    .bse-blocked {
+      display: none;
+      text-align: center;
+      padding: 48px 24px;
+    }
+
     /* ── BOTÓN COTIZADOR BSE ── */
     .btn-bse-oficial {
       display: flex;
@@ -1567,9 +1592,40 @@
         Volver
       </button>
 
-      <div class="form-card">
-        <span class="form-badge">BSE · Renta Personal</span>
-        <h2 class="form-title">Completá tus datos</h2>
+      <!-- Cotizador oficial BSE embebido -->
+      <div class="form-card bse-embed-card">
+        <span class="form-badge">BSE · Cotizador Oficial</span>
+        <h2 class="form-title" style="margin-bottom:6px;">Cotizador de Renta Personal</h2>
+        <p class="contact-sub" style="margin-bottom:14px;">Completá los campos para obtener tu cotización con valores exactos y guardarla en PDF.</p>
+        <div class="bse-iframe-wrap">
+          <iframe id="bse-renta-iframe"
+            src="https://serviciospublicos.bse.com.uy/CotizaRentaPersWeb/rentaPersonal.jsp"
+            title="Cotizador Renta Personal — BSE"
+            loading="lazy"
+            scrolling="auto">
+          </iframe>
+          <div class="bse-blocked" id="bse-blocked">
+            <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="margin-bottom:12px"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+            <p style="font-size:.88rem;color:var(--text-mid);margin-bottom:16px;">El cotizador BSE no puede mostrarse aquí.<br>Podés abrirlo directamente:</p>
+            <a href="https://serviciospublicos.bse.com.uy/CotizaRentaPersWeb/rentaPersonal.jsp"
+               target="_blank" rel="noopener" class="btn-bse-oficial" style="width:auto;padding:12px 24px;">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+              Abrir cotizador en nueva pestaña
+            </a>
+          </div>
+        </div>
+        <p class="cta-note" style="margin-top:10px;">
+          ¿No carga el cotizador?
+          <a href="https://serviciospublicos.bse.com.uy/CotizaRentaPersWeb/rentaPersonal.jsp"
+             target="_blank" rel="noopener" style="color:var(--gold);font-weight:600;">Abrilo en nueva pestaña →</a>
+        </p>
+      </div>
+
+      <!-- Asesoramiento personalizado -->
+      <div class="form-card" style="margin-top:16px;">
+        <span class="form-badge">Feder Life Consulting</span>
+        <h2 class="form-title">Solicitá asesoramiento</h2>
+        <p class="contact-sub" style="margin-bottom:20px;">¿Querés que un asesor te explique las opciones y te ayude a elegir? Completá tus datos y te contactamos.</p>
 
         <div class="field-row">
           <div class="field">
@@ -1666,21 +1722,6 @@
           <label for="rp-email">Correo electrónico <span style="font-weight:400;text-transform:none;letter-spacing:0">(opcional)</span></label>
           <input type="email" id="rp-email" placeholder="Ej: carlos@correo.com" autocomplete="email" />
         </div>
-
-        <div class="divider"></div>
-
-        <!-- Cotizador oficial BSE -->
-        <a class="btn-bse-oficial"
-           href="https://serviciospublicos.bse.com.uy/CotizaRentaPersWeb/rentaPersonal.jsp"
-           target="_blank" rel="noopener">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/>
-            <polyline points="15 3 21 3 21 9"/>
-            <line x1="10" y1="14" x2="21" y2="3"/>
-          </svg>
-          Ver cotización oficial BSE
-        </a>
-        <p class="cta-note" style="margin-bottom:20px;">El cotizador del BSE te muestra los valores exactos y podés guardar el resumen en PDF.</p>
 
         <div class="divider"></div>
 
@@ -2435,6 +2476,24 @@ _Enviado desde federlifeconsulting.com_`;
         window.open('https://wa.me/' + WA_NUMBER + '?text=' + encodeURIComponent(msg), '_blank');
       }
     }
+
+    // ── DETECCIÓN IFRAME BSE BLOQUEADO ──
+    (function () {
+      var iframe = document.getElementById('bse-renta-iframe');
+      if (!iframe) return;
+      iframe.addEventListener('load', function () {
+        try {
+          // Si accede sin error → mismo origen → página de error local → bloqueado
+          var href = iframe.contentWindow.location.href;
+          if (href && href !== 'about:blank') {
+            document.getElementById('bse-blocked').style.display = 'block';
+            iframe.style.display = 'none';
+          }
+        } catch (e) {
+          // SecurityError → cross-origin → el iframe cargó correctamente
+        }
+      });
+    })();
 
     // ── FORMULARIO DE CONTACTO ──
     (function () {
