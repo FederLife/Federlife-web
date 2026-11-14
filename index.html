@@ -704,9 +704,9 @@
       background: #f0ede8;
       margin-bottom: 4px;
     }
-    #bse-renta-iframe {
+    #bse-renta-iframe, #bse-ahorro-iframe {
       width: 100%;
-      height: 580px;
+      height: 760px;
       border: none;
       display: block;
       border-radius: 10px;
@@ -716,6 +716,8 @@
       text-align: center;
       padding: 48px 24px;
     }
+    .iframe-section { display: none; }
+    .iframe-section.active { display: block; animation: tabFadeIn 0.38s ease forwards; }
 
     /* ── BOTÓN COTIZADOR BSE ── */
     .btn-bse-oficial {
@@ -1516,6 +1518,8 @@
     <!-- TAB: COTIZADOR -->
     <div id="tab-cotizador" class="tab-panel">
 
+    <p id="planes-nota" class="planes-nota"><span>Tenés la posibilidad de tomar ambos planes tanto en U$S como en UI</span></p>
+
     <!-- SELECTOR SPLIT SCREEN -->
     <div id="selector" class="split-selector">
 
@@ -1553,14 +1557,13 @@
         <span class="form-badge">BSE · Ahorro y Vida</span>
         <h2 class="form-title">¿Cómo querés cotizar?</h2>
         <p class="contact-sub" style="margin-bottom:24px;">Elegí la opción que mejor se adapte a vos.</p>
-        <a href="https://serviciospublicos.bse.com.uy/CotizaVidaAhorroWeb/vida/inicioVidaYAhorro.jsp"
-           target="_blank" rel="noopener" class="choice-opt choice-opt--bse">
+        <button onclick="showIframeDirect('ahorro')" class="choice-opt choice-opt--bse">
           <div class="choice-opt-body">
             <p class="choice-opt-title">Cotizá por tu cuenta</p>
             <p class="choice-opt-desc">Accedé al cotizador oficial del BSE y obtené tu cotización exacta en PDF.</p>
           </div>
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-        </a>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+        </button>
         <p class="choice-sep">o</p>
         <button onclick="showFormDirect('ahorro')" class="choice-opt choice-opt--feder">
           <div class="choice-opt-body">
@@ -1584,14 +1587,13 @@
         <span class="form-badge">BSE · Renta Personal</span>
         <h2 class="form-title">¿Cómo querés cotizar?</h2>
         <p class="contact-sub" style="margin-bottom:24px;">Elegí la opción que mejor se adapte a vos.</p>
-        <a href="https://serviciospublicos.bse.com.uy/CotizaRentaPersWeb/rentaPersonal.jsp"
-           target="_blank" rel="noopener" class="choice-opt choice-opt--bse">
+        <button onclick="showIframeDirect('renta')" class="choice-opt choice-opt--bse">
           <div class="choice-opt-body">
             <p class="choice-opt-title">Cotizá por tu cuenta</p>
             <p class="choice-opt-desc">Accedé al cotizador oficial del BSE y obtené tu cotización exacta en PDF.</p>
           </div>
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-        </a>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+        </button>
         <p class="choice-sep">o</p>
         <button onclick="showFormDirect('renta')" class="choice-opt choice-opt--feder">
           <div class="choice-opt-body">
@@ -1600,6 +1602,80 @@
           </div>
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
         </button>
+      </div>
+    </div>
+
+    <!-- IFRAME: AHORRO Y VIDA -->
+    <div id="iframe-ahorro" class="iframe-section">
+      <button class="back-btn" onclick="goBack()">
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+          <path d="M9 2L4 7l5 5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        Volver
+      </button>
+      <div class="form-card bse-embed-card">
+        <span class="form-badge">BSE · Ahorro y Vida</span>
+        <h2 class="form-title" style="margin-bottom:6px;">Cotizador Oficial BSE</h2>
+        <p class="contact-sub" style="margin-bottom:14px;">Completá los campos y guardá tu cotización en PDF.</p>
+        <div class="bse-iframe-wrap">
+          <iframe id="bse-ahorro-iframe"
+            src="https://serviciospublicos.bse.com.uy/CotizaVidaAhorroWeb/vida/inicioVidaYAhorro.jsp"
+            title="Cotizador Ahorro y Vida — BSE"
+            loading="lazy"
+            scrolling="auto">
+          </iframe>
+          <div class="bse-blocked" id="bse-ahorro-blocked">
+            <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="margin-bottom:12px"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+            <p style="font-size:.88rem;color:var(--text-mid);margin-bottom:16px;">El cotizador BSE no puede mostrarse aquí.<br>Podés abrirlo directamente:</p>
+            <a href="https://serviciospublicos.bse.com.uy/CotizaVidaAhorroWeb/vida/inicioVidaYAhorro.jsp"
+               target="_blank" rel="noopener" class="btn-bse-oficial" style="width:auto;padding:12px 24px;">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+              Abrir cotizador en nueva pestaña
+            </a>
+          </div>
+        </div>
+        <p class="cta-note" style="margin-top:10px;">
+          ¿No carga el cotizador?
+          <a href="https://serviciospublicos.bse.com.uy/CotizaVidaAhorroWeb/vida/inicioVidaYAhorro.jsp"
+             target="_blank" rel="noopener" style="color:var(--gold);font-weight:600;">Abrilo en nueva pestaña →</a>
+        </p>
+      </div>
+    </div>
+
+    <!-- IFRAME: RENTA PERSONAL -->
+    <div id="iframe-renta" class="iframe-section">
+      <button class="back-btn" onclick="goBack()">
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+          <path d="M9 2L4 7l5 5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        Volver
+      </button>
+      <div class="form-card bse-embed-card">
+        <span class="form-badge">BSE · Renta Personal</span>
+        <h2 class="form-title" style="margin-bottom:6px;">Cotizador Oficial BSE</h2>
+        <p class="contact-sub" style="margin-bottom:14px;">Completá los campos y guardá tu cotización en PDF.</p>
+        <div class="bse-iframe-wrap">
+          <iframe id="bse-renta-iframe"
+            src="https://serviciospublicos.bse.com.uy/CotizaRentaPersWeb/rentaPersonal.jsp"
+            title="Cotizador Renta Personal — BSE"
+            loading="lazy"
+            scrolling="auto">
+          </iframe>
+          <div class="bse-blocked" id="bse-renta-blocked">
+            <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="margin-bottom:12px"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+            <p style="font-size:.88rem;color:var(--text-mid);margin-bottom:16px;">El cotizador BSE no puede mostrarse aquí.<br>Podés abrirlo directamente:</p>
+            <a href="https://serviciospublicos.bse.com.uy/CotizaRentaPersWeb/rentaPersonal.jsp"
+               target="_blank" rel="noopener" class="btn-bse-oficial" style="width:auto;padding:12px 24px;">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+              Abrir cotizador en nueva pestaña
+            </a>
+          </div>
+        </div>
+        <p class="cta-note" style="margin-top:10px;">
+          ¿No carga el cotizador?
+          <a href="https://serviciospublicos.bse.com.uy/CotizaRentaPersWeb/rentaPersonal.jsp"
+             target="_blank" rel="noopener" style="color:var(--gold);font-weight:600;">Abrilo en nueva pestaña →</a>
+        </p>
       </div>
     </div>
 
@@ -2373,7 +2449,21 @@
         sel.style.display    = 'none';
         sel.style.transition = '';
         sel.style.opacity    = '';
+        document.getElementById('planes-nota').style.display = 'none';
         document.getElementById('choice-' + tipo).classList.add('active');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }, 220);
+    }
+
+    function showIframeDirect(tipo) {
+      const choice = document.getElementById('choice-' + tipo);
+      choice.style.transition = 'opacity 0.22s ease';
+      choice.style.opacity    = '0';
+      setTimeout(() => {
+        choice.classList.remove('active');
+        choice.style.transition = '';
+        choice.style.opacity    = '';
+        document.getElementById('iframe-' + tipo).classList.add('active');
         window.scrollTo({ top: 0, behavior: 'smooth' });
       }, 220);
     }
@@ -2392,6 +2482,29 @@
     }
 
     function goBack() {
+      // Nivel 1: desde iframe → volver a choice screen
+      const activeIframe = document.querySelector('.iframe-section.active');
+      if (activeIframe) {
+        const tipo = activeIframe.id.replace('iframe-', '');
+        activeIframe.style.transition = 'opacity 0.2s ease';
+        activeIframe.style.opacity    = '0';
+        setTimeout(() => {
+          activeIframe.classList.remove('active');
+          activeIframe.style.transition = '';
+          activeIframe.style.opacity    = '';
+          const choice = document.getElementById('choice-' + tipo);
+          choice.classList.add('active');
+          choice.style.opacity = '0';
+          requestAnimationFrame(() => {
+            choice.style.transition = 'opacity 0.3s ease';
+            choice.style.opacity    = '1';
+            setTimeout(() => { choice.style.transition = ''; choice.style.opacity = ''; }, 320);
+          });
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        }, 200);
+        return;
+      }
+      // Nivel 2: desde form → volver a choice screen
       const activeForm = document.querySelector('.form-section.active');
       if (activeForm) {
         const tipo = activeForm.id.replace('form-', '');
@@ -2413,6 +2526,7 @@
         }, 200);
         return;
       }
+      // Nivel 3: desde choice → volver al selector
       const activeChoice = document.querySelector('.choice-section.active');
       if (activeChoice) {
         activeChoice.style.transition = 'opacity 0.2s ease';
@@ -2423,6 +2537,7 @@
             c.style.transition = '';
             c.style.opacity    = '';
           });
+          document.getElementById('planes-nota').style.display = '';
           const sel = document.getElementById('selector');
           sel.style.display = 'flex';
           sel.style.opacity = '0';
@@ -2619,6 +2734,23 @@ _Enviado desde federlifeconsulting.com_`;
         });
       });
     })();
+
+    // ── DETECCIÓN IFRAMES BSE BLOQUEADOS ──
+    ['ahorro', 'renta'].forEach(function(tipo) {
+      var iframe = document.getElementById('bse-' + tipo + '-iframe');
+      if (!iframe) return;
+      iframe.addEventListener('load', function () {
+        try {
+          var href = iframe.contentWindow.location.href;
+          if (href && href !== 'about:blank') {
+            document.getElementById('bse-' + tipo + '-blocked').style.display = 'block';
+            iframe.style.display = 'none';
+          }
+        } catch (e) {
+          // SecurityError → cross-origin → el iframe cargó correctamente
+        }
+      });
+    });
   </script>
 </body>
 </html>
