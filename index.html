@@ -155,6 +155,37 @@
       display: block;
       animation: tabFadeIn 0.38s ease forwards;
     }
+    .choice-section { display: none; }
+    .choice-section.active {
+      display: block;
+      animation: tabFadeIn 0.38s ease forwards;
+    }
+    .choice-opt {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      width: 100%;
+      padding: 18px 20px;
+      border-radius: 10px;
+      border: none;
+      cursor: pointer;
+      text-align: left;
+      text-decoration: none;
+      transition: transform 0.18s, box-shadow 0.18s;
+      margin-bottom: 4px;
+      box-sizing: border-box;
+      font-family: 'Inter', sans-serif;
+    }
+    .choice-opt--bse { background: var(--navy); color: var(--gold-light); box-shadow: 0 4px 14px rgba(10,25,47,0.18); }
+    .choice-opt--bse:hover { transform: translateY(-2px); box-shadow: 0 7px 20px rgba(10,25,47,0.26); }
+    .choice-opt--feder { background: var(--off-white); color: var(--navy); border: 1.5px solid #d9d2c5; }
+    .choice-opt--feder:hover { transform: translateY(-2px); box-shadow: 0 4px 14px rgba(10,25,47,0.10); border-color: var(--gold); }
+    .choice-opt-body { flex: 1; }
+    .choice-opt-title { font-size: 0.95rem; font-weight: 700; margin: 0 0 4px; }
+    .choice-opt--bse .choice-opt-title { color: var(--gold-light); }
+    .choice-opt--feder .choice-opt-title { color: var(--navy); }
+    .choice-opt-desc { font-size: 0.82rem; margin: 0; line-height: 1.5; opacity: 0.82; }
+    .choice-sep { text-align: center; font-size: 0.8rem; color: var(--text-mid); letter-spacing: 0.08em; text-transform: uppercase; margin: 12px 0; }
 
     .back-btn {
       display: inline-flex;
@@ -1485,8 +1516,6 @@
     <!-- TAB: COTIZADOR -->
     <div id="tab-cotizador" class="tab-panel">
 
-    <p class="planes-nota"><span>Tenés la posibilidad de tomar ambos planes tanto en U$S como en UI</span></p>
-
     <!-- SELECTOR SPLIT SCREEN -->
     <div id="selector" class="split-selector">
 
@@ -1510,6 +1539,68 @@
         </div>
       </div>
 
+    </div>
+
+    <!-- CHOICE: AHORRO Y VIDA -->
+    <div id="choice-ahorro" class="choice-section">
+      <button class="back-btn" onclick="goBack()">
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+          <path d="M9 2L4 7l5 5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        Volver
+      </button>
+      <div class="form-card">
+        <span class="form-badge">BSE · Ahorro y Vida</span>
+        <h2 class="form-title">¿Cómo querés cotizar?</h2>
+        <p class="contact-sub" style="margin-bottom:24px;">Elegí la opción que mejor se adapte a vos.</p>
+        <a href="https://serviciospublicos.bse.com.uy/CotizaVidaAhorroWeb/vida/inicioVidaYAhorro.jsp"
+           target="_blank" rel="noopener" class="choice-opt choice-opt--bse">
+          <div class="choice-opt-body">
+            <p class="choice-opt-title">Cotizá por tu cuenta</p>
+            <p class="choice-opt-desc">Accedé al cotizador oficial del BSE y obtené tu cotización exacta en PDF.</p>
+          </div>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+        </a>
+        <p class="choice-sep">o</p>
+        <button onclick="showFormDirect('ahorro')" class="choice-opt choice-opt--feder">
+          <div class="choice-opt-body">
+            <p class="choice-opt-title">Solicitá una cotización personalizada</p>
+            <p class="choice-opt-desc">Completá tus datos y un asesor de Feder Life te envía la cotización por WhatsApp.</p>
+          </div>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- CHOICE: RENTA PERSONAL -->
+    <div id="choice-renta" class="choice-section">
+      <button class="back-btn" onclick="goBack()">
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+          <path d="M9 2L4 7l5 5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        Volver
+      </button>
+      <div class="form-card">
+        <span class="form-badge">BSE · Renta Personal</span>
+        <h2 class="form-title">¿Cómo querés cotizar?</h2>
+        <p class="contact-sub" style="margin-bottom:24px;">Elegí la opción que mejor se adapte a vos.</p>
+        <a href="https://serviciospublicos.bse.com.uy/CotizaRentaPersWeb/rentaPersonal.jsp"
+           target="_blank" rel="noopener" class="choice-opt choice-opt--bse">
+          <div class="choice-opt-body">
+            <p class="choice-opt-title">Cotizá por tu cuenta</p>
+            <p class="choice-opt-desc">Accedé al cotizador oficial del BSE y obtené tu cotización exacta en PDF.</p>
+          </div>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+        </a>
+        <p class="choice-sep">o</p>
+        <button onclick="showFormDirect('renta')" class="choice-opt choice-opt--feder">
+          <div class="choice-opt-body">
+            <p class="choice-opt-title">Solicitá una cotización personalizada</p>
+            <p class="choice-opt-desc">Completá tus datos y un asesor de Feder Life te envía la cotización por WhatsApp.</p>
+          </div>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+        </button>
+      </div>
     </div>
 
     <!-- FORM: AHORRO Y VIDA -->
@@ -1592,37 +1683,8 @@
         Volver
       </button>
 
-      <!-- Cotizador oficial BSE embebido -->
-      <div class="form-card bse-embed-card">
-        <span class="form-badge">BSE · Cotizador Oficial</span>
-        <h2 class="form-title" style="margin-bottom:6px;">Cotizador de Renta Personal</h2>
-        <p class="contact-sub" style="margin-bottom:14px;">Completá los campos para obtener tu cotización con valores exactos y guardarla en PDF.</p>
-        <div class="bse-iframe-wrap">
-          <iframe id="bse-renta-iframe"
-            src="https://serviciospublicos.bse.com.uy/CotizaRentaPersWeb/rentaPersonal.jsp"
-            title="Cotizador Renta Personal — BSE"
-            loading="lazy"
-            scrolling="auto">
-          </iframe>
-          <div class="bse-blocked" id="bse-blocked">
-            <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="margin-bottom:12px"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
-            <p style="font-size:.88rem;color:var(--text-mid);margin-bottom:16px;">El cotizador BSE no puede mostrarse aquí.<br>Podés abrirlo directamente:</p>
-            <a href="https://serviciospublicos.bse.com.uy/CotizaRentaPersWeb/rentaPersonal.jsp"
-               target="_blank" rel="noopener" class="btn-bse-oficial" style="width:auto;padding:12px 24px;">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-              Abrir cotizador en nueva pestaña
-            </a>
-          </div>
-        </div>
-        <p class="cta-note" style="margin-top:10px;">
-          ¿No carga el cotizador?
-          <a href="https://serviciospublicos.bse.com.uy/CotizaRentaPersWeb/rentaPersonal.jsp"
-             target="_blank" rel="noopener" style="color:var(--gold);font-weight:600;">Abrilo en nueva pestaña →</a>
-        </p>
-      </div>
-
       <!-- Asesoramiento personalizado -->
-      <div class="form-card" style="margin-top:16px;">
+      <div class="form-card">
         <span class="form-badge">Feder Life Consulting</span>
         <h2 class="form-title">Solicitá asesoramiento</h2>
         <p class="contact-sub" style="margin-bottom:20px;">¿Querés que un asesor te explique las opciones y te ayude a elegir? Completá tus datos y te contactamos.</p>
@@ -2311,21 +2373,55 @@
         sel.style.display    = 'none';
         sel.style.transition = '';
         sel.style.opacity    = '';
+        document.getElementById('choice-' + tipo).classList.add('active');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }, 220);
+    }
+
+    function showFormDirect(tipo) {
+      const choice = document.getElementById('choice-' + tipo);
+      choice.style.transition = 'opacity 0.22s ease';
+      choice.style.opacity    = '0';
+      setTimeout(() => {
+        choice.classList.remove('active');
+        choice.style.transition = '';
+        choice.style.opacity    = '';
         document.getElementById('form-' + tipo).classList.add('active');
         window.scrollTo({ top: 0, behavior: 'smooth' });
       }, 220);
     }
 
     function goBack() {
-      const active = document.querySelector('.form-section.active');
-      if (active) {
-        active.style.transition = 'opacity 0.2s ease';
-        active.style.opacity    = '0';
+      const activeForm = document.querySelector('.form-section.active');
+      if (activeForm) {
+        const tipo = activeForm.id.replace('form-', '');
+        activeForm.style.transition = 'opacity 0.2s ease';
+        activeForm.style.opacity    = '0';
         setTimeout(() => {
-          document.querySelectorAll('.form-section').forEach(f => {
-            f.classList.remove('active');
-            f.style.transition = '';
-            f.style.opacity    = '';
+          activeForm.classList.remove('active');
+          activeForm.style.transition = '';
+          activeForm.style.opacity    = '';
+          const choice = document.getElementById('choice-' + tipo);
+          choice.classList.add('active');
+          choice.style.opacity = '0';
+          requestAnimationFrame(() => {
+            choice.style.transition = 'opacity 0.3s ease';
+            choice.style.opacity    = '1';
+            setTimeout(() => { choice.style.transition = ''; choice.style.opacity = ''; }, 320);
+          });
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        }, 200);
+        return;
+      }
+      const activeChoice = document.querySelector('.choice-section.active');
+      if (activeChoice) {
+        activeChoice.style.transition = 'opacity 0.2s ease';
+        activeChoice.style.opacity    = '0';
+        setTimeout(() => {
+          document.querySelectorAll('.choice-section').forEach(c => {
+            c.classList.remove('active');
+            c.style.transition = '';
+            c.style.opacity    = '';
           });
           const sel = document.getElementById('selector');
           sel.style.display = 'flex';
@@ -2337,11 +2433,6 @@
           });
           window.scrollTo({ top: 0, behavior: 'smooth' });
         }, 200);
-      } else {
-        document.querySelectorAll('.form-section').forEach(f => f.classList.remove('active'));
-        const sel = document.getElementById('selector');
-        sel.style.display = 'flex';
-        window.scrollTo({ top: 0, behavior: 'smooth' });
       }
     }
 
@@ -2477,23 +2568,6 @@ _Enviado desde federlifeconsulting.com_`;
       }
     }
 
-    // ── DETECCIÓN IFRAME BSE BLOQUEADO ──
-    (function () {
-      var iframe = document.getElementById('bse-renta-iframe');
-      if (!iframe) return;
-      iframe.addEventListener('load', function () {
-        try {
-          // Si accede sin error → mismo origen → página de error local → bloqueado
-          var href = iframe.contentWindow.location.href;
-          if (href && href !== 'about:blank') {
-            document.getElementById('bse-blocked').style.display = 'block';
-            iframe.style.display = 'none';
-          }
-        } catch (e) {
-          // SecurityError → cross-origin → el iframe cargó correctamente
-        }
-      });
-    })();
 
     // ── FORMULARIO DE CONTACTO ──
     (function () {
