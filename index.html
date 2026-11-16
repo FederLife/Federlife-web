@@ -780,6 +780,24 @@
       text-align: center;
       padding: 48px 24px;
     }
+    .iframe-notice {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      background: #f5f0e8;
+      border: 1px solid #e0d4b8;
+      border-radius: 8px;
+      padding: 11px 14px;
+      margin-bottom: 12px;
+      font-size: 0.82rem;
+      color: var(--text-mid);
+      line-height: 1.5;
+    }
+    .iframe-notice svg { flex-shrink: 0; margin-top: 1px; }
+    .iframe-notice a { color: var(--navy); font-weight: 600; white-space: nowrap; }
+    @media (prefers-color-scheme: dark) {
+      .iframe-notice { background: rgba(201,168,76,0.08); border-color: rgba(201,168,76,0.22); color: var(--text-mid); }
+    }
     .iframe-section { display: none; }
     .iframe-section.active { display: block; animation: tabFadeIn 0.38s ease forwards; }
 
@@ -1718,6 +1736,11 @@
         <span class="form-badge">BSE · Renta Personal</span>
         <h2 class="form-title" style="margin-bottom:6px;">Cotizador Oficial BSE</h2>
         <p class="contact-sub" style="margin-bottom:14px;">Completá los campos y guardá tu cotización en PDF.</p>
+        <div class="iframe-notice">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+          <span>Si seleccionás <strong>Renta al contado / cobro inmediato</strong> y los valores aparecen en 0, usá el cotizador directamente en el portal BSE:
+          <a href="https://serviciospublicos.bse.com.uy/CotizaRentaPersWeb/rentaPersonal.jsp" target="_blank" rel="noopener">Abrir en nueva pestaña →</a></span>
+        </div>
         <div class="bse-iframe-wrap">
           <iframe id="bse-renta-iframe"
             src="https://serviciospublicos.bse.com.uy/CotizaRentaPersWeb/rentaPersonal.jsp"
