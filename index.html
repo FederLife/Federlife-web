@@ -780,24 +780,6 @@
       text-align: center;
       padding: 48px 24px;
     }
-    .iframe-notice {
-      display: flex;
-      align-items: flex-start;
-      gap: 10px;
-      background: #f5f0e8;
-      border: 1px solid #e0d4b8;
-      border-radius: 8px;
-      padding: 11px 14px;
-      margin-bottom: 12px;
-      font-size: 0.82rem;
-      color: var(--text-mid);
-      line-height: 1.5;
-    }
-    .iframe-notice svg { flex-shrink: 0; margin-top: 1px; }
-    .iframe-notice a { color: var(--navy); font-weight: 600; white-space: nowrap; }
-    @media (prefers-color-scheme: dark) {
-      .iframe-notice { background: rgba(201,168,76,0.08); border-color: rgba(201,168,76,0.22); color: var(--text-mid); }
-    }
     .iframe-section { display: none; }
     .iframe-section.active { display: block; animation: tabFadeIn 0.38s ease forwards; }
 
@@ -1545,6 +1527,79 @@
       margin: 10px 0 4px;
       font-size: 0.82rem;
     }
+
+    /* ── MC TABS (Flyers / Formularios) ── */
+    .mc-tabs-bar {
+      display: flex;
+      background: var(--navy-dark);
+      padding: 0 20px;
+      flex-shrink: 0;
+      gap: 2px;
+    }
+    .mc-tab-btn {
+      padding: 11px 20px;
+      background: none;
+      border: none;
+      border-bottom: 3px solid transparent;
+      color: rgba(232,213,163,0.5);
+      font-family: 'Inter', sans-serif;
+      font-size: 0.85rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      cursor: pointer;
+      transition: color 0.18s, border-color 0.18s;
+    }
+    .mc-tab-btn.active { color: var(--gold-light); border-bottom-color: var(--gold); }
+    .mc-tab-btn:hover:not(.active) { color: rgba(232,213,163,0.78); }
+    .mc-panel { display: none; }
+    .mc-panel.active { display: block; animation: tabFadeIn 0.28s ease forwards; }
+
+    /* ── FORMULARIOS ── */
+    .mc-forms-group { margin-bottom: 28px; }
+    .mc-forms-group-title {
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.11em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 10px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid #e8e0d0;
+    }
+    .mc-form-row {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 13px 16px;
+      background: var(--white);
+      border-radius: 10px;
+      box-shadow: 0 1px 4px rgba(27,24,120,0.07);
+      margin-bottom: 8px;
+      text-decoration: none;
+      color: var(--navy);
+      transition: transform 0.17s, box-shadow 0.17s;
+    }
+    .mc-form-row:hover { transform: translateX(3px); box-shadow: 0 3px 14px rgba(27,24,120,0.13); }
+    .mc-form-icon {
+      width: 38px; height: 38px;
+      background: var(--gold-pale);
+      border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+      color: var(--navy);
+    }
+    .mc-form-name {
+      flex: 1;
+      font-size: 0.88rem;
+      font-weight: 600;
+      line-height: 1.3;
+    }
+    .mc-form-dl {
+      display: flex; align-items: center; gap: 5px;
+      font-size: 0.75rem; font-weight: 600; font-family: 'Inter', sans-serif;
+      color: var(--text-mid); flex-shrink: 0;
+      letter-spacing: 0.02em;
+    }
   </style>
 </head>
 <body>
@@ -1559,25 +1614,149 @@
       </div>
       <button class="mc-close" onclick="cerrarCorredores()">✕ Salir</button>
     </div>
+    <div class="mc-tabs-bar">
+      <button class="mc-tab-btn active" data-tab="flyers" onclick="mcTab('flyers')">Flyers</button>
+      <button class="mc-tab-btn" data-tab="formularios" onclick="mcTab('formularios')">Formularios</button>
+    </div>
     <div class="mc-body">
-      <h2 class="mc-section-title">Flyers</h2>
-      <p class="mc-section-sub">Material de difusión ordenado del más reciente al más antiguo. Hacé clic en Descargar para guardar el archivo.</p>
-      <div class="mc-toolbar">
-        <span class="mc-sort-label">Ordenar por:</span>
-        <div class="mc-sort-btns">
-          <button class="mc-sort-btn active" id="sort-fecha" onclick="setSortMode('fecha')">
-            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
-            Fecha de subida
-          </button>
-          <button class="mc-sort-btn" id="sort-alfa" onclick="setSortMode('alfa')">
-            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="15" y2="12"/><line x1="3" y1="18" x2="9" y2="18"/></svg>
-            Alfabético
-          </button>
+
+      <!-- PANEL: FLYERS -->
+      <div id="mc-panel-flyers" class="mc-panel active">
+        <h2 class="mc-section-title">Flyers</h2>
+        <p class="mc-section-sub">Material de difusión ordenado del más reciente al más antiguo. Hacé clic en Descargar para guardar el archivo.</p>
+        <div class="mc-toolbar">
+          <span class="mc-sort-label">Ordenar por:</span>
+          <div class="mc-sort-btns">
+            <button class="mc-sort-btn active" id="sort-fecha" onclick="setSortMode('fecha')">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+              Fecha de subida
+            </button>
+            <button class="mc-sort-btn" id="sort-alfa" onclick="setSortMode('alfa')">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="15" y2="12"/><line x1="3" y1="18" x2="9" y2="18"/></svg>
+              Alfabético
+            </button>
+          </div>
+        </div>
+        <div class="mc-flyers-grid" id="mc-flyers-grid">
+          <!-- Los flyers se renderizan desde el array en JavaScript -->
         </div>
       </div>
-      <div class="mc-flyers-grid" id="mc-flyers-grid">
-        <!-- Los flyers se renderizan desde el array en JavaScript -->
+
+      <!-- PANEL: FORMULARIOS -->
+      <div id="mc-panel-formularios" class="mc-panel">
+        <h2 class="mc-section-title">Formularios</h2>
+        <p class="mc-section-sub">Hacé clic en cualquier formulario para descargarlo en PDF.</p>
+
+        <!-- GRUPO 1: Formularios de productos -->
+        <div class="mc-forms-group">
+          <div class="mc-forms-group-title">Formularios de productos</div>
+
+          <a href="formularios/seguros-individuales.pdf" download class="mc-form-row">
+            <div class="mc-form-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+            </div>
+            <span class="mc-form-name">Formulario de Seguros Individuales</span>
+            <span class="mc-form-dl">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+              PDF
+            </span>
+          </a>
+
+          <a href="formularios/renta-personal.pdf" download class="mc-form-row">
+            <div class="mc-form-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+            </div>
+            <span class="mc-form-name">Formulario de Renta Personal</span>
+            <span class="mc-form-dl">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+              PDF
+            </span>
+          </a>
+
+          <a href="formularios/dpsc.pdf" download class="mc-form-row">
+            <div class="mc-form-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+            </div>
+            <span class="mc-form-name">Declaración Personal de Salud Completa (DPSC)</span>
+            <span class="mc-form-dl">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+              PDF
+            </span>
+          </a>
+
+          <a href="formularios/dpsr.pdf" download class="mc-form-row">
+            <div class="mc-form-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+            </div>
+            <span class="mc-form-name">Declaración Personal de Salud Reducida (DPSR)</span>
+            <span class="mc-form-dl">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+              PDF
+            </span>
+          </a>
+
+          <a href="formularios/preexistencia.pdf" download class="mc-form-row">
+            <div class="mc-form-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+            </div>
+            <span class="mc-form-name">Anexo Cláusulas de Preexistencia</span>
+            <span class="mc-form-dl">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+              PDF
+            </span>
+          </a>
+        </div>
+
+        <!-- GRUPO 2: Otros formularios -->
+        <div class="mc-forms-group">
+          <div class="mc-forms-group-title">Otros formularios</div>
+
+          <a href="formularios/modificaciones.pdf" download class="mc-form-row">
+            <div class="mc-form-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+            </div>
+            <span class="mc-form-name">Formulario de Solicitud de Modificaciones 2026</span>
+            <span class="mc-form-dl">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+              PDF
+            </span>
+          </a>
+
+          <a href="formularios/adhesion-pago.pdf" download class="mc-form-row">
+            <div class="mc-form-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
+            </div>
+            <span class="mc-form-name">Formulario de Adhesión de Pago (Débito Automático)</span>
+            <span class="mc-form-dl">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+              PDF
+            </span>
+          </a>
+
+          <a href="formularios/beneficiarios.pdf" download class="mc-form-row">
+            <div class="mc-form-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
+            </div>
+            <span class="mc-form-name">Designación o Cambio de Beneficiarios</span>
+            <span class="mc-form-dl">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+              PDF
+            </span>
+          </a>
+
+          <a href="formularios/datos-contratante.pdf" download class="mc-form-row">
+            <div class="mc-form-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+            </div>
+            <span class="mc-form-name">Datos del Contratante</span>
+            <span class="mc-form-dl">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+              PDF
+            </span>
+          </a>
+        </div>
       </div>
+
     </div>
   </div>
 
@@ -1736,11 +1915,6 @@
         <span class="form-badge">BSE · Renta Personal</span>
         <h2 class="form-title" style="margin-bottom:6px;">Cotizador Oficial BSE</h2>
         <p class="contact-sub" style="margin-bottom:14px;">Completá los campos y guardá tu cotización en PDF.</p>
-        <div class="iframe-notice">
-          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
-          <span>Si seleccionás <strong>Renta al contado / cobro inmediato</strong> y los valores aparecen en 0, usá el cotizador directamente en el portal BSE:
-          <a href="https://serviciospublicos.bse.com.uy/CotizaRentaPersWeb/rentaPersonal.jsp" target="_blank" rel="noopener">Abrir en nueva pestaña →</a></span>
-        </div>
         <div class="bse-iframe-wrap">
           <iframe id="bse-renta-iframe"
             src="https://serviciospublicos.bse.com.uy/CotizaRentaPersWeb/rentaPersonal.jsp"
@@ -2519,6 +2693,11 @@
     function cerrarCorredores() {
       document.getElementById('mc-overlay').classList.remove('active');
       document.body.style.overflow = '';
+    }
+
+    function mcTab(tab) {
+      document.querySelectorAll('.mc-tab-btn').forEach(b => b.classList.toggle('active', b.dataset.tab === tab));
+      document.querySelectorAll('.mc-panel').forEach(p => p.classList.toggle('active', p.id === 'mc-panel-' + tab));
     }
 
     // Cerrar con tecla Escape
