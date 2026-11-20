@@ -1566,12 +1566,13 @@
 
     /* ── PORTAL BSE CARDS ── */
     .mc-portal-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 260px));
+      display: flex;
+      flex-wrap: wrap;
       justify-content: center;
       gap: 14px;
     }
     .mc-portal-card {
+      flex: 0 1 240px;
       display: flex;
       flex-direction: column;
       gap: 10px;
@@ -1821,10 +1822,10 @@
       <!-- PANEL: PORTAL BSE -->
       <div id="mc-panel-portal" class="mc-panel">
         <h2 class="mc-section-title">Portal del Asesor — BSE</h2>
-        <p class="mc-section-sub">Iniciá sesión en el portal con tu cuenta de corredor y navegá a la sección correspondiente.</p>
+        <p class="mc-section-sub">Accesos directos al portal BSE. Se abre en una pestaña nueva; iniciá sesión con tu cuenta de corredor.</p>
         <div class="mc-portal-grid">
 
-          <a href="https://portaldelasesor.bse.com.uy/"
+          <a href="https://portaldelasesor.bse.com.uy/wps/myportal/portal-asesor/escritorio-comercial/polizas/!ut/p/z1/jdDBboMwDAbgp8mx2AzKot0iVC0qldqp26C5VGFNKRIQ5KSb-vZDZbutrL7Z-uxfMigoQHX6s660r22nm6HfqWTPRYyh3GKGq3mKSYbRO67k4iVKIL8CvFECQd2zPwHU9Pkc1JWEMotlPFxYz18jTLhc88f0OczEwz9gG_6AiZAlqKqx5fgP0ZURr0CRORoyFJxpGJ-8790TQ4a9Ja-bg2m0M85SUDoTfNg2OF8YfvWOYXsZyS-djZDh4lB7TaklMtb9lXSyzkNxOwD69q3AetPm3IlvUq4Rcg!!/dz/d5/L2dBISEvZ0FBIS9nQSEh/"
              target="_blank" rel="noopener noreferrer nofollow" class="mc-portal-card">
             <div class="mc-portal-card-icon">
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
@@ -1834,7 +1835,7 @@
             <div class="mc-portal-card-cta">Abrir en BSE <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></div>
           </a>
 
-          <a href="https://portaldelasesor.bse.com.uy/"
+          <a href="https://portaldelasesor.bse.com.uy/wps/myportal/portal-asesor/escritorio-comercial/consultas/cuenta-corriente/!ut/p/z1/jdDfT4MwEAfwT9NH6QG1sr0RgpahIcY5WV9MmR2SACVtneHbj4h7m2x9u-Z3978c5jjHvBVfVSlspVpRD_U7p8cgJOCyHaSwnkdAU_DfYM1ib0Px4QbgwQsB8__0TwA-Pf6A-Y1kGfNYQrzNap8sgGbu03Lrx1uSkDtwWUoYGSKy-asPNGBZsIhWbhp6f4CdewcTW7xgXtaqGA8WtoUflJhr-Sm11M5FD99nazvzjABBp7QV9UnWwkijtFMY6Xyoxrn0CK6dQdD0I_mhsxEiiE-VFTpSWktlfks6K2Nx_jgAd80-hyqZ8aK_fgMa1hT7/dz/d5/L2dBISEvZ0FBIS9nQSEh/"
              target="_blank" rel="noopener noreferrer nofollow" class="mc-portal-card">
             <div class="mc-portal-card-icon">
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg>
@@ -1844,7 +1845,7 @@
             <div class="mc-portal-card-cta">Abrir en BSE <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></div>
           </a>
 
-          <a href="https://portaldelasesor.bse.com.uy/"
+          <a href="https://portaldelasesor.bse.com.uy/wps/myportal/portal-asesor/gestion-comercial/novedades/!ut/p/z1/jdDBboJAEAbgp9ljmUEQSG_EWtcSuyZqoXsxS90iCbBkdm3j29cUe1PSuc3km_mTAQkFyE591ZVytelUc-nfZbQXgk_4MpysFrtljJF4S1_Xz3GwfQog_wV4p1IE-Z_9ESDHz-cgRyNW0yvweRbycIOZmG4DjBIukni28LONfwUjIS8gq8aUwz_SrgySCiTpT02avBNdxkfnevvIkGFvyKnmoBtltTXklVZ7H6b1TmeG371l2J4H8kcfBshwfqidopkh0sbeSjoa66C4HwB9uyuwXrd5YtMfiS2XZA!!/dz/d5/L2dBISEvZ0FBIS9nQSEh/"
              target="_blank" rel="noopener noreferrer nofollow" class="mc-portal-card">
             <div class="mc-portal-card-icon">
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 01-3.46 0"/></svg>
@@ -1854,7 +1855,7 @@
             <div class="mc-portal-card-cta">Abrir en BSE <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></div>
           </a>
 
-          <a href="https://portaldelasesor.bse.com.uy/"
+          <a href="https://portaldelasesor.bse.com.uy/wps/myportal/portal-asesor/escritorio-comercial/cotizaciones/cotizador-vida/!ut/p/z1/jdBRb4IwEAfwT9NH6QG1sr0RgpahIcY5WV9MmR2SACVtneHbj4h7m2x9u-Z3978c5jjHvBVfVSlspVpRD_U7p8cgJOCyHaSwnkdAU_DfYM1ib0Px4QbgwQsB8__0TwA-Pf6A-Y1kGfNYQrzNap8sgGbu03Lrx1uSkDtwWUoYGSKy-asPNGBZsIhWbhp6f4CdewcTW7xgXtaqGA8WtoUflJhr-Sm11M5FD99nazvzjABBp7QV9UnWwkijtFMY6Xyoxrn0CK6dQdD0I_mhsxEiiE-VFTpSWktlfks6K2Nx_jgAd80-hyqZ8aK_fgMa1hT7/dz/d5/L2dBISEvZ0FBIS9nQSEh/"
              target="_blank" rel="noopener noreferrer nofollow" class="mc-portal-card">
             <div class="mc-portal-card-icon">
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
@@ -1864,7 +1865,7 @@
             <div class="mc-portal-card-cta">Abrir en BSE <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></div>
           </a>
 
-          <a href="https://portaldelasesor.bse.com.uy/"
+          <a href="https://portaldelasesor.bse.com.uy/wps/myportal/portal-asesor/servicios-online/renta-personal/!ut/p/z1/pZJJd4IwFIV_iwuWmKAg0B1aK454ah3IxsMQMK0QTKLW_vrGoa4qHo9ZZbh599zvPYDAAqA82JE0EITmwVqefdRYep5bc7t6bdiZdk3Y8GbOaPxm9tquBuYnAbyxHAiQfNbcvu7qE9j3jI86bFiuZ5mtjtZq1S7_SwSo3H8GEEBFRGLgx2aMLTOx1bhmx6puy52VaIZqYl2zdNuShc2jOspFIVbALygTwVoNOOaUKZDkJCJUgRyz3XHHFchwLgK1wIyfYMzvwUDlKOZH99tp-xPtIiip0QMoXdPw3BonD-tWChDDCWaYVbdMXq-EKPiLAhV4Dhjj9TliNeS4GtGsuj0ocF_IfNnhLPmTXlm0YyIC1qKMYcr_c1pRLsDitgHwJSvzJitbNn5H8B5Mc8oyGWbyYBtdWOrQHA-MJx3Kyr8PYf3J8r17gy2hk8_NBjlyYGku8PeV9wMTW2TTaWbVD-pXMhRGaKTZ8rU5Uv3e7mfgOJXKL57NFIs!/dz/d5/L2dBISEvZ0FBIS9nQSEh/"
              target="_blank" rel="noopener noreferrer nofollow" class="mc-portal-card">
             <div class="mc-portal-card-icon">
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
