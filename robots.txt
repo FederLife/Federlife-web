@@ -1,4 +1,5 @@
 User-agent: *
 Allow: /
+Disallow: /formularios/
 
 Sitemap: https://www.federlifeconsulting.com.uy/sitemap.xml
